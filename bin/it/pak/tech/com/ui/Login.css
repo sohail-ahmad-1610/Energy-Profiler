@@ -1,0 +1,86 @@
+.body{
+	background-image: url("background.jpg");
+	
+
+}
+
+.background {
+    -fx-background-color: #6C7B8B;
+}
+.background1 {
+    -fx-background-color: #6C7B8B;
+}
+.background2 {
+    -fx-background-color: #E0EEEE;
+}
+
+.background3 {
+    -fx-background-color: #C5C1AA;
+}
+
+.background4{
+	-fx-background-color: #BEBEBE;
+}
+
+.label1 {
+    -fx-font-size: 26px;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 0,0,0,1 );
+}
+
+.label2{
+	-fx-font-size: 20px;
+	-fx-text-fill: #111111;
+}
+
+.label3{
+	-fx-font-size: 14px;
+	-fx-text-fill: black;
+}
+
+#welcome-text {
+   -fx-font-size: 32px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: #818181;
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+#actiontarget {
+  -fx-fill: FIREBRICK;
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );  
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#4682b4, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#4682b4, #61a2b1);
+}
+.btn{
+-fx-color:black;
+-fx-fill:blue;
+-fx-padding:4px;
+-fx-background-color:#34c669;
+-fx-font-size: 30px;
+-fx-background-radius: 20px;
+}
+
+#btn1 {
+    -fx-padding: 14 18 18 18;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}

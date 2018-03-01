@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/commons-codec-1.4.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/gson-1.7.2.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/httpclient-4.1.2.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/httpcore-4.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/httpmime-4.1.2.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/jsoup-1.10.3.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/jsoup-1.10.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/jsoup-1.10.3-sources.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/junit-4.8.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/org.eclipse.egit.github.core-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/org.eclipse.egit.github.core-2.1.5.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/org.eclipse.egit.github.core-2.1.5-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/selendroid-standalone-0.17.0-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/home/sohail/GitHub/slf4j-simple-1.7.25.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
