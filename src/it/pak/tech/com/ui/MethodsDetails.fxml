@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="872.0" prefWidth="1600.0" styleClass="background" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.pak.tech.com.controllers.MethodsDetailsController">
+   <children>
+      <ImageView layoutY="-9.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../../../../../../Resources/light-blue-background-29.jpeg" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <TableView fx:id="statsTable" layoutX="10.0" layoutY="130.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="600.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="130.0">
+        <columns>
+          <TableColumn fx:id="signatureCol" prefWidth="382.0" text="Method Signature" />
+            <TableColumn fx:id="joulesCol" minWidth="0.0" prefWidth="151.0" text="Joule" />
+            <TableColumn fx:id="secondsCol" prefWidth="134.0" text="Seconds" />
+            <TableColumn fx:id="noOfCallsCol" minWidth="0.0" prefWidth="89.0" text="No Of Calls" />
+            <TableColumn fx:id="exclusiveTimeCol" prefWidth="374.0" text="Exculsive (secs)" />
+            <TableColumn fx:id="inclusiveTimeCol" minWidth="0.0" prefWidth="446.0" text="Inculsive (secs)" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="metricsProfileComboBox" layoutX="11.0" layoutY="583.0" onAction="#showStructuralMetrics" prefHeight="33.0" prefWidth="224.0" promptText="Select Metrics Profile" />
+      <ComboBox fx:id="runComboBox" layoutX="11.0" layoutY="64.0" onAction="#showSelectedItem" prefHeight="33.0" prefWidth="224.0" />
+      <Label layoutX="15.0" layoutY="36.0" text="Select Run" textFill="#ebe7e7">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="ckTable" layoutX="11.0" layoutY="637.0" prefHeight="200.0" prefWidth="1578.0" visible="false">
+        <columns>
+          <TableColumn fx:id="classCol" prefWidth="562.3333129882812" text="Class" />
+          <TableColumn fx:id="CBOCol" minWidth="0.0" prefWidth="161.33331298828125" text="CBO" />
+            <TableColumn fx:id="DITCol" minWidth="0.0" prefWidth="186.66668701171875" text="DIT" />
+            <TableColumn fx:id="LCOMCol" minWidth="2.666656494140625" prefWidth="175.333251953125" text="LCOM" />
+            <TableColumn fx:id="NOCCol" minWidth="0.0" prefWidth="100.6666259765625" text="NOC" />
+            <TableColumn fx:id="RFCCol" prefWidth="160.3333740234375" text="RFC" />
+            <TableColumn fx:id="WMCCol" prefWidth="227.0" text="WMC" />
+        </columns>
+      </TableView>
+      <TableView fx:id="martinTable" layoutX="11.0" layoutY="647.0" prefHeight="200.0" prefWidth="1578.0" visible="false">
+         <columns>
+            <TableColumn fx:id="packageCol" prefWidth="562.3333129882812" text="Package" />
+            <TableColumn fx:id="ACol" minWidth="0.0" prefWidth="161.33331298828125" text="A" />
+            <TableColumn fx:id="CaCol" minWidth="0.0" prefWidth="186.66668701171875" text="Ca" />
+            <TableColumn fx:id="CeCol" minWidth="2.666656494140625" prefWidth="175.333251953125" text="Ce" />
+            <TableColumn fx:id="DCol" minWidth="0.0" prefWidth="165.0" text="D" />
+            <TableColumn fx:id="ICol" prefWidth="324.0" text="I" />
+         </columns>
+      </TableView>
+      <TableView fx:id="moodTable" layoutX="11.0" layoutY="647.0" prefHeight="200.0" prefWidth="1578.0" visible="false">
+         <columns>
+            <TableColumn fx:id="ProjectCol" prefWidth="562.3333129882812" text="Project" />
+            <TableColumn fx:id="AHFCol" minWidth="0.0" prefWidth="161.33331298828125" text="AHF" />
+            <TableColumn fx:id="AIFCol" minWidth="0.0" prefWidth="186.66668701171875" text="AIF" />
+            <TableColumn fx:id="CFCol" minWidth="2.666656494140625" prefWidth="175.333251953125" text="CF" />
+            <TableColumn fx:id="MHFCol" minWidth="0.0" prefWidth="100.6666259765625" text="MHF" />
+            <TableColumn fx:id="MIFCol" prefWidth="160.3333740234375" text="MIF" />
+            <TableColumn fx:id="PFCol" prefWidth="227.0" text="PF" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

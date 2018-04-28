@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
-<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
-  <deploy>
-    <application name="EP_Project_V2"/>
+<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="/home/sohail/Desktop">
+  <deploy packagingFormat="exe">
+    <application name="EP_Project_V2" mainclass="it.pak.tech.com.controllers.EPDriver" version="3"/>
     <info/>
   </deploy>
   <signjar/>

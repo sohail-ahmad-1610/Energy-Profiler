@@ -3,4 +3,4 @@
 # Make Sure You also set Environment variables of java jdk(JAVA_HOME), android home(ANDROID_HOME) and adb home(ADB_HOME)
 
 Android_Studio_Version = 2.3.3
-OutputLocation = /home/sohail/EP_Output
+OutputLocation = /home/sohail/FinalVersion/EP_Output

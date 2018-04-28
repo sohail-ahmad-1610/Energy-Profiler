@@ -19,10 +19,10 @@ public class SysTrace
   private int numberOfCpu;
   void setFrequencies(List<CpuFrequency> freq) {
     this.frequencies = freq;
-    for (CpuFrequency freq1 : this.frequencies) {
-    	
-    	System.out.println("FT: " + freq1.getTime());
-    }
+//    for (CpuFrequency freq1 : this.frequencies) {
+//    	
+//    	System.out.println("FT: " + freq1.getTime());
+//    }
   }
   
   public int getSystraceStartTime() {

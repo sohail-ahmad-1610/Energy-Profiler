@@ -13,10 +13,13 @@ public class EnergyProfilerContract {
 	public static int minSDKVersion ;
 	public static int targetSDKVersion ;
 	public static int maxRun = 0 ;
+	public static int timeCapturing = 0 ;
+	public static int seedRunner = 1;
 	public static String androidStudioV;
 	
 	public static String sdkpath;
 	public static String sourceCodePath;
 	public static String tempOutputPath;
 	public static String appVersion ;
+	public static String appName;
 }

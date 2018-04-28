@@ -16,6 +16,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 public class ConfigManager {
 
 	private final String propertiesPath ;
@@ -36,6 +38,7 @@ public class ConfigManager {
 			prop.load(inputStream);
 			//initBuildTools();
 			EnergyProfilerContract.minSDKVersion = 19;
+			EnergyProfilerContract.targetSDKVersion = 23 ;
 			EnergyProfilerContract.tempOutputPath = prop.getProperty("OutputLocation");
 			EnergyProfilerContract.androidStudioV = prop.getProperty("Android_Studio_Version");
 			
@@ -189,18 +192,19 @@ public class ConfigManager {
 				}
 				else if (line.contains("minSdkVersion")) {
 					
-					updatedLine = line.substring(0 , (line.length() - 3)) + " " + EnergyProfilerContract.minSDKVersion;   // Give your MinSDK version.....
+					//updatedLine = line.substring(0 , (line.length() - 3)) + " " + EnergyProfilerContract.minSDKVersion;   // Give your MinSDK version.....
+					updatedLine = line ;
 					isChange = true ;
-				}/*
+				}
 				else if (line.contains("targetSdkVersion")) {
 					
 					updatedLine = line.substring(0 , (line.length() - 3)) + " " + EnergyProfilerContract.targetSDKVersion;   // Give your Target SDK version.....
 					isChange = true ;
-				}*/
+				}
 				else if (line.contains("com.android.support:appcompat")) {
 					
 					index = line.indexOf('-');
-					updatedLine = line.substring(0 , index) + "-v7:" + EnergyProfilerContract.compileSDKVersion + ".+'";   // Give your Support Activity version.....
+					updatedLine = "compile \"com.android.support:appcompat" + "-v7:" + EnergyProfilerContract.compileSDKVersion + ".+\"";   // Give your Support Activity version.....
 					isChange = true ;
 				}
 				
@@ -251,10 +255,10 @@ public class ConfigManager {
        + "}";
 		
 //		String testDependency = "\ttestCompile 'junit:junit:4.12'\n";
-		String espressoDependency = "\tandroidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {\n" + 
+/*		String espressoDependency = "\tandroidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {\n" + 
 				"        exclude group: 'com.android.support', module: 'support-annotations'\n" + 
 				"    }\n";
-		String testRunner = "testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'\n";
+		String testRunner = "testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'\n";*/
 		
 		try {
 			
@@ -265,13 +269,13 @@ public class ConfigManager {
 				
 				if (instructions.get(i).contains("defaultConfig")) {
 					out.write(instructions.get(i));
-					out.write(testRunner);
+	//				out.write(testRunner);
 				}
 				
 				else if (instructions.get(i).contains("dependencies")) {
 					out.write(instructions.get(i));
 	//				out.write(testDependency);
-					out.write(espressoDependency);
+	//				out.write(espressoDependency);
 				}
 				else {
 					out.write(instructions.get(i));
@@ -352,21 +356,55 @@ public class ConfigManager {
 			
 			while ((line = in.readLine()) != null) {
 				
-				if (line.trim().startsWith("package")) {
-					MainActivityPath = line.substring(line.indexOf("=")+2,line.lastIndexOf("\""));
+				if (line.trim().contains("package")) {
+					
+					MainActivityPath = line.substring(line.indexOf("package=")+9,line.lastIndexOf("\""));
+					EnergyProfilerContract.appName = MainActivityPath ;
 					MainActivityPath = MainActivityPath.replace('.', '/');
+					//System.out.println("MPath: 1 " + MainActivityPath);
 				}
 				
-				if (line.contains("uses-permission")) {
+				if (line.contains("<uses-permission")) {
 					
-					if (line.substring(line.indexOf("=")+2,line.lastIndexOf("\"")).equals("android.permission.WRITE_EXTERNAL_STORAGE")) {
-						writePerm = true;
+					if (line.endsWith("/>") || line.endsWith("</uses-permission>")) {
+					
+						if (!writePerm && line.substring(line.indexOf("=")+2,line.lastIndexOf("\"")).equals("android.permission.WRITE_EXTERNAL_STORAGE")) {
+							writePerm = true;
+				//			System.out.println("Write Found");
+						}
+						if (!readPerm && line.substring(line.indexOf("=")+2,line.lastIndexOf("\"")).equals("android.permission.READ_EXTERNAL_STORAGE")) {
+							readPerm = true;
+
+	//						System.out.println("Read Found");
+						}
 					}
-					if (line.substring(line.indexOf("=")+2,line.lastIndexOf("\"")).equals("android.permission.READ_EXTERNAL_STORAGE")) {
-						readPerm = true;
+					else {
+						
+						while ((line = in.readLine()) != null) {
+							
+							if (line.contains("android:name")) {
+								
+								if (!writePerm && line.substring(line.indexOf("=")+2,line.lastIndexOf("\"")).equals("android.permission.WRITE_EXTERNAL_STORAGE")) {
+									writePerm = true;
+
+		//							System.out.println("Write Found");
+									break;
+								}
+								if (!readPerm && line.substring(line.indexOf("=")+2,line.lastIndexOf("\"")).equals("android.permission.READ_EXTERNAL_STORAGE")) {
+									readPerm = true;
+
+			//						System.out.println("Read Found");
+									break;
+								}
+							}
+							if (line.endsWith("/>")) {
+								break;
+							}
+						}
 					}
 					
 				}
+				
 				instructions.add(line+"\n");
 			}
 			in.close();
@@ -376,8 +414,10 @@ public class ConfigManager {
 			e.printStackTrace();
 		}
 		manifestFile.delete();
+		//System.out.println("MP1: " + MainActivityPath);
 		MainActivityPath = UpdateManifest(instructions,writePerm,readPerm,manifestPath, MainActivityPath);
-		MainActivityPath = EnergyProfilerContract.sourceCodePath + "/app/src/main/java/" + MainActivityPath;
+		MainActivityPath = EnergyProfilerContract.sourceCodePath + "app/src/main/java/" + MainActivityPath;
+		//System.out.println("MP2: " + MainActivityPath1);
 		ConfigLauncherActivity(MainActivityPath);
 	}
 	public static void ConfigLauncherActivity (String MainActivityPath) {
@@ -412,8 +452,16 @@ public class ConfigManager {
 		
 		File mainActivityFile = new File(MainActivityPath);
 		OutputStream outStream = null;
-		
+		String destroyAppStatements = "BroadcastReceiver receiver = new BroadcastReceiver() {\n" + 
+				                      "            @Override\n" + 
+				                      "            public void onReceive(Context ctx, Intent intent) {\n" + 
+				                      "                finish();\n" + 
+				                      "            }\n" + 
+				                      "        };\n" + 
+				                      "\n" + 
+				                      "        registerReceiver(receiver, new IntentFilter(\"foo.intent.action.SHUTDOWN\"));\n";
 		try {
+			
 			outStream = new FileOutputStream(mainActivityFile);
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(outStream));
 			
@@ -422,6 +470,10 @@ public class ConfigManager {
 				if (instructions.get(i).startsWith("package")) {
 					out.write(instructions.get(i++));
 					out.write("import android.os.Debug;\n");
+					out.write("import android.content.BroadcastReceiver;\n" + 
+							  "import android.content.Context;\n" +
+							  "import android.content.Intent;\n" +
+							  "import android.content.IntentFilter;");
 				}
 				
 				if (instructions.get(i).contains("super.onCreate(savedInstanceState)")) {
@@ -432,13 +484,16 @@ public class ConfigManager {
 					}
 					out.write(instructions.get(i++));
 					out.write("\t\tDebug.startMethodTracing(\"TraceLogFile\");\n");
+					out.write(destroyAppStatements);
 				}
 				
 				if (instructions.get(i).contains("@Override") && !onDestroy) {
-					
-					out.write("\t@Override\n" + "\tprotected void onDestroy() {\n\n" + "\t\tsuper.onDestroy();\n" +
-					"\t\tDebug.stopMethodTracing();\n\n\t}\n");
-					onDestroy = true ;
+					if (instructions.get(i+1).contains("public void onCreate") || instructions.get(i+1).contains("protected void onCreate")) 
+					{
+						out.write("\t@Override\n" + "\tprotected void onDestroy() {\n\n" + "\t\tsuper.onDestroy();\n" +
+						"\t\tDebug.stopMethodTracing();\n\n\t}\n");
+						onDestroy = true ;
+					}
 				}
 				
 				if (onDestroy && instructions.get(i).contains("super.onDestroy()")) {
@@ -462,6 +517,8 @@ public class ConfigManager {
 			outputStream = new FileOutputStream(manifestFile);
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(outputStream));
 			
+			boolean launcherFound =false;
+			
 			for (int i=0; i<instructions.size(); i++) {
 				
 				if (instructions.get(i).contains("<application")) {
@@ -474,21 +531,68 @@ public class ConfigManager {
 					}
 				}
 				
-				if (instructions.get(i).contains("android.intent.action.MAIN")) {
+				if (instructions.get(i).contains("android.intent.action.MAIN") && !launcherFound) {
 					
-					int index = i-1;
-					String nameline = null;
-					while (!(nameline = instructions.get(index)).contains("android:name")) {
-						index--;
-					}
-					String activityName = nameline.substring(nameline.indexOf("=")+2,nameline.lastIndexOf("\""));
-					MainActivityPath += "/" + activityName.substring(activityName.lastIndexOf('.')+1,activityName.length()) +".java";
-		//			System.out.println(MainActivityPath);
+					int index = i;
+					do {
+						index++;
+						if (instructions.get(index).contains("android.intent.category.LAUNCHER")) {
+							launcherFound = true;
+							break;
+						}
+						if (instructions.get(index).contains("intent-filter")) {
+							break;
+						}
+					}while(!launcherFound);
+
+					if (launcherFound) 
+					{
+						//System.out.println("Init index: " + index);
+						index = i-1;
+						String nameline = null;
+						while (!(nameline = instructions.get(index)).contains("<activity")) {
+							//System.out.println(nameline);
+							//System.out.println("Ins: "+instructions.get(index));
+							index--;
+						}
+						if (nameline.contains("<activity-alias")) {
+							while (!(nameline = instructions.get(index)).contains("android:targetActivity")) {
+								index++;
+							}
+						}
+						else {
+							while (!(nameline = instructions.get(index)).contains("android:name")) {
+								index++;
+							}
+						}
+						
+						
+						//System.out.println(nameline);
+						
+						String activityName = nameline.substring(nameline.indexOf("=")+2,nameline.indexOf("\"", nameline.indexOf("=")+2));
+						
+						
+						activityName = activityName.replace(".", "/");
+						
+						//System.out.println("Activity Name: " + activityName);
+	
+						
+						if (activityName.contains(MainActivityPath)) {
+	
+							MainActivityPath = activityName + ".java";
+							
+							//System.out.println("MPath: " + MainActivityPath);
+						}
+						else {
+							MainActivityPath = MainActivityPath + "/" + activityName + ".java";
+						}
+						
+					}//System.out.println("MPath: " + MainActivityPath);
 				}
 				if (instructions.get(i).contains("android:minSdkVersion")) {
 					
 					String temp = instructions.get(i);
-					temp = temp.substring(0, temp.indexOf('\"')) + "\"15\"\n";
+					temp = temp.substring(0, temp.indexOf('\"')) + "\"15\" />\n";
 					instructions.set(i, temp);
 				}
 				
@@ -496,6 +600,7 @@ public class ConfigManager {
 			}
 			out.close();
 			outputStream.close();
+			//System.out.println("MP: " + MainActivityPath);
 			return MainActivityPath ;
 		}catch (IOException e) {
 			// TODO: handle exception
@@ -565,14 +670,14 @@ public class ConfigManager {
 				}
 				else if (line.contains("minSdkVersion")) {
 					
-					updatedLine = line.substring(0 , (line.length() - 3)) + " " + EnergyProfilerContract.minSDKVersion;   // Give your MinSDK version.....
+					//updatedLine = line.substring(0 , (line.length() - 3)) + " " + EnergyProfilerContract.minSDKVersion;   // Give your MinSDK version.....
 					isChange = true ;
 				}
-//				else if (line.contains("targetSdkVersion")) {
-//					
-//					updatedLine = line.substring(0 , (line.length() - 3)) + " " + EnergyProfilerContract.targetSDKVersion;   // Give your Target SDK version.....
-//					isChange = true ;
-//				}
+				else if (line.contains("targetSdkVersion")) {
+					
+					updatedLine = line.substring(0 , (line.length() - 3)) + " " + EnergyProfilerContract.targetSDKVersion;   // Give your Target SDK version.....
+					isChange = true ;
+				}
 				else if (line.contains("com.android.support:appcompat")) {
 					
 					index = line.indexOf('-');

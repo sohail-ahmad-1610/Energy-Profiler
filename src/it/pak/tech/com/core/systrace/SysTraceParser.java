@@ -33,7 +33,16 @@ public class SysTraceParser
     
     Document doc = Jsoup.parse(file, "UTF-8", fileName);
     Elements scriptElements = doc.getElementsByClass("trace-data");
-    String sysTraceText = ((DataNode)((Element)scriptElements.get(1)).dataNodes().get(0)).getWholeData();
+    
+    // Update multiple trace-data tags........
+    String sysTraceText = "";
+    for (int i = 0 ; i < scriptElements.size(); i++) {
+    	
+    	sysTraceText = ((DataNode)((Element)scriptElements.get(i)).dataNodes().get(0)).getWholeData();
+    	if (sysTraceText.contains("cpu_frequency")) {
+    		break ;
+    	}
+    }
     
     for (String line : sysTraceText.split("\n"))
     {

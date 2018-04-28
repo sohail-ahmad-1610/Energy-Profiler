@@ -7,43 +7,86 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.pak.tech.com.controllers.EPExperiment">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.pak.tech.com.controllers.EPExperiment">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="620.0" layoutY="-4.0" pickOnBounds="true" smooth="false">
+      <ImageView fitHeight="560.0" fitWidth="800.0" layoutY="-4.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../../../../Resources/loginimg.jpg" />
+            <Image url="@../../../../../../Resources/light-blue-background-29.jpeg" />
          </image>
       </ImageView>
-      <Label layoutX="145.0" layoutY="109.0" text="Username:" textFill="WHITE">
+      <Label layoutX="273.0" layoutY="155.0" text="App Owner" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="username" layoutX="258.0" layoutY="103.0" />
-      <Label layoutX="144.0" layoutY="156.0" text="App Name:" textFill="WHITE">
+      <TextField fx:id="username" layoutX="366.0" layoutY="153.0" prefHeight="26.0" prefWidth="248.0" />
+      <Label layoutX="274.0" layoutY="207.0" text="App Name" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="repo" layoutX="259.0" layoutY="156.0" />
-      <Button fx:id="start" layoutX="279.0" layoutY="259.0" mnemonicParsing="false" onAction="#startDownloading" text="Start Download" />
-      <ProgressBar fx:id="bar" layoutX="260.0" layoutY="208.0" prefHeight="26.0" prefWidth="171.0" progress="0.0" />
+      <TextField fx:id="repo" layoutX="367.0" layoutY="203.0" prefHeight="26.0" prefWidth="248.0" />
+      <Button fx:id="start" layoutX="484.0" layoutY="299.0" mnemonicParsing="false" onAction="#startDownloading" prefWidth="132.0" text="Start Download" />
+      <ProgressBar fx:id="bar" layoutX="368.0" layoutY="255.0" prefHeight="26.0" prefWidth="248.0" progress="0.0" />
       <Label fx:id="done" layoutX="243.0" layoutY="73.0" prefHeight="19.0" prefWidth="194.0" text="Downloading Completed" textFill="WHITE" visible="false">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="23.0" text="E-Profiler" textFill="WHITE">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="148.0" layoutY="208.0" text="Progress: " textFill="WHITE">
+      <Label layoutX="277.0" layoutY="257.0" text="Progress" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
+      <Button layoutX="691.0" layoutY="28.0" mnemonicParsing="false" onAction="#skipDownloading" prefHeight="26.0" prefWidth="84.0" text="Skip" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="48.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Resources/billi.gif" />
+         </image>
+      </ImageView>
+      <Text layoutX="362.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E">
+         <font>
+            <Font name="DejaVu Sans Bold" size="44.0" />
+         </font>
+         <fill>
+            <RadialGradient centerX="1.0" centerY="1.0" radius="0.5">
+               <stops>
+                  <Stop color="#514f4fba" />
+                  <Stop color="#ccf9ffe3" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Text>
+      <Text layoutX="391.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profiler">
+         <font>
+            <Font name="DejaVu Sans Bold" size="30.0" />
+         </font>
+         <fill>
+            <RadialGradient centerX="0.5561797752808989" centerY="1.0" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#51371b" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Text>
+      <Text layoutX="88.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GitHub">
+         <font>
+            <Font name="DejaVu Sans Bold" size="20.0" />
+         </font>
+         <fill>
+            <RadialGradient centerX="0.5561797752808989" centerY="1.0" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Text>
    </children>
 </AnchorPane>

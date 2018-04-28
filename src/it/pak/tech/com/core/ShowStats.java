@@ -10,24 +10,22 @@ import javafx.beans.property.StringProperty;
 public class ShowStats {
 	
 	private final StringProperty appVerison;
-	private final StringProperty testcase;
+	//private final StringProperty testcase;
 	private final IntegerProperty noOfMethods;
 	private final DoubleProperty totalEnergy;
 	private final IntegerProperty maxRun;
 	
-	public ShowStats(String appVerison, String testcase, int noOfMethods,
+	public ShowStats(String appVerison, int noOfMethods,
 			double totalEnergy, int maxRun) {
 		super();
 		this.appVerison = new SimpleStringProperty(appVerison);
-		this.testcase = new SimpleStringProperty(testcase);
+		//this.testcase = new SimpleStringProperty(testcase);
 		this.noOfMethods = new SimpleIntegerProperty(noOfMethods);
 		this.totalEnergy = new SimpleDoubleProperty(totalEnergy);
 		this.maxRun = new SimpleIntegerProperty(maxRun);
 	}
 
-
-
-
+	
 	public String getAppVerison() {
 		return appVerison.get();
 	}
@@ -39,16 +37,16 @@ public class ShowStats {
 		return appVerison;
 	}
 	
-	public String getTestcase() {
-		return testcase.get();
-	}
-	public void setTestcase(String testcase) {
-		this.testcase.set(testcase);
-	}
+//	public String getTestcase() {
+//		return testcase.get();
+//	}
+//	public void setTestcase(String testcase) {
+//		this.testcase.set(testcase);
+//	}
 	
-	public StringProperty testcaseProperty() {
-		return testcase;
-	}
+//	public StringProperty testcaseProperty() {
+//		return testcase;
+//	}
 	
 	public int getNoOfMethods() {
 		return noOfMethods.get();

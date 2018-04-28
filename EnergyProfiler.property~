@@ -1,0 +1,6 @@
+# Initial Configuration for Energy Profiler tool
+# Provide Your System Files Storage Location and Android SDK information here
+# Make Sure You also set Environment variables of java jdk(JAVA_HOME), android home(ANDROID_HOME) and adb home(ADB_HOME)
+
+Android_Studio_Version = 2.3.3
+OutputLocation = /home/shan/FYP_II/FinalVersion/EP_Output

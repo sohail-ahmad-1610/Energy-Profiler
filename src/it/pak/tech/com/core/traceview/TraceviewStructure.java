@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TraceviewStructure
 {
-  private final List<TraceLine> tracelines;
+  private List<TraceLine> tracelines;
   private final int startTime;
   private final int endTime;
   
@@ -19,7 +19,11 @@ public class TraceviewStructure
     return tracelines;
   }
   
-  public int getStartTime() {
+  public void setTracelines(List<TraceLine> tracelines) {
+	this.tracelines = tracelines;
+}
+
+public int getStartTime() {
     return startTime;
   }
   

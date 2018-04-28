@@ -8,25 +8,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.pak.tech.com.controllers.ShowStatsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.pak.tech.com.controllers.ShowStatsController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="620.0" layoutY="-4.0" pickOnBounds="true" smooth="false">
+      <ImageView fitHeight="560.0" fitWidth="800.0" layoutY="-4.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@../../../../../../Resources/loginimg.jpg" />
+            <Image url="@../../../../../../Resources/light-blue-background-29.jpeg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="23.0" text="E-Profiler" textFill="WHITE">
+      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="280.0" layoutY="24.0" text="Energy Consumption Details" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="statsTable" layoutX="47.0" layoutY="69.0" prefHeight="303.0" prefWidth="531.0">
+      <TableView fx:id="statsTable" layoutX="78.0" layoutY="81.0" prefHeight="312.0" prefWidth="650.0">
         <columns>
-          <TableColumn fx:id="appVerisonCol" prefWidth="102.0" text="App Version" />
-          <TableColumn fx:id="testcaseCol" prefWidth="74.0" text="Testcase" />
-            <TableColumn fx:id="noOfMethodsCol" prefWidth="120.0" text="No. of Methods" />
-            <TableColumn fx:id="totalEnergyCol" prefWidth="154.0" text="Energy Consumtion" />
-            <TableColumn fx:id="maxRunCol" text="Max run" />
+          <TableColumn fx:id="appVerisonCol" prefWidth="143.0" text="App Version" />
+            <TableColumn fx:id="noOfMethodsCol" prefWidth="136.0" text="No. of Methods" />
+            <TableColumn fx:id="totalEnergyCol" prefWidth="258.0" text="Energy Consumtion(Joules)" />
+            <TableColumn fx:id="maxRunCol" prefWidth="112.0" text="Max run" />
         </columns>
       </TableView>
    </children>

@@ -1,0 +1,58 @@
+Energy Profiler is a software able to estimate the energy consumption of method calls in Android apps.
+It is based on some Android tools that are Monkey, Batterystats, Systrace, and dmtracedump.
+
+For more information on these tools please take a look to the references.
+
+Energy Profiler is the outcome of the research conducted by the Artificial Intelligence & Machine Learning Lab of the National University of Computer and Emerging Sciences, Pakistan.
+
+================COMPATIBILITY NOTE==================
+Energy Profiler is compatibility with Android Sdk version: 2.3.3 and gradle version is 3.3
+
+
+================REQUIREMENTS==================
+In order to properly work Energy Profiler needs a working Android Development Environment. 
+
+
+1- Install Java jdk-1.8.0 by visiting the following link You can skip it if you already installed:
+           https://www.ntu.edu.sg/home/ehchua/programming/howto/JDK_HowTo.html#jdk_ubuntu
+
+2- You can find more information on how install Android SDK here:
+           https://spring.io/guides/gs/android/
+
+3- After the Installation Add some environment variables(JAVA_HOME,ANDROID_HOME,ADB_HOME). You can do this by adding these lines to your /etc/profile (for a system-wide installation) or $HOME/.profile:
+
+Note:  You must specify your installation path of directories where you install the above programs.
+
+JAVA_HOME=/usr/local/java/jdk1.8.0
+JRE_HOME=$JAVA_HOME/jre
+PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+export JAVA_HOME
+export JRE_HOME
+export PATH
+ANDROID_HOME=/home/sohail/Android/sdk
+PATH=$PATH:$ANDROID_HOME
+export ANDROID_HOME
+export PATH
+ADB_HOME=/home/sohail/Android/sdk/platform-tools
+PATH=$PATH:$ADB_HOME
+export ADB_HOME
+export PATH
+
+4- For the changes to take effect, restart your computer or source your .profile file using the following command:
+     source ~/.profile
+
+
+=============CONFIG PROPERTIES=================
+
+outputLocation
+#Complete path of the output folder.
+
+Android_Studio_Version
+#Android Studio Version is required when building the application apk file in classpath
+
+
+================REFERENCES=====================
+https://developer.android.com/studio/test/monkey.html
+https://developer.android.com/studio/profile/battery-historian.html
+https://developer.android.com/studio/profile/systrace.html
+https://developer.android.com/studio/profile/traceview.html

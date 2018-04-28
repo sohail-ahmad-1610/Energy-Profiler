@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.pak.tech.com.controllers.EPExperiment">
+   <children>
+      <ImageView fitHeight="560.0" fitWidth="800.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Resources/light-blue-background-29.jpeg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="31.0" layoutY="79.0" prefHeight="444.0" prefWidth="756.0">
+         <children>
+            <Label layoutX="2.0" layoutY="12.0" text="Interactions" textFill="#ddf5f5" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Serif Regular" size="15.0" />
+               </font>
+            </Label>
+            <Slider fx:id="interactionsSlider" blockIncrement="1.0" layoutX="213.0" layoutY="13.0" majorTickUnit="500.0" max="5000.0" minorTickCount="0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="516.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+               <effect>
+                  <Glow />
+               </effect>
+            </Slider>
+            <Label layoutX="2.0" layoutY="117.0" prefHeight="20.0" prefWidth="214.0" text="Time between Interactions" textFill="#ddf5f5" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Serif Regular" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="2.0" layoutY="63.0" text="Max Runs" textFill="#ddf5f5" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Serif Regular" size="15.0" />
+               </font>
+            </Label>
+            <Slider fx:id="maxrunSlider" blockIncrement="1.0" layoutX="213.0" layoutY="64.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="516.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+               <effect>
+                  <Glow />
+               </effect>
+            </Slider>
+            <Slider fx:id="timeBetweenInteractionsSlider" blockIncrement="1.0" layoutX="213.0" layoutY="118.0" majorTickUnit="100.0" max="2500.0" minorTickCount="0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="516.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+               <effect>
+                  <Glow />
+               </effect>
+            </Slider>
+            <Label layoutX="2.0" layoutY="171.0" prefHeight="20.0" prefWidth="225.0" text="Product release" textFill="#ddf5f5" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Serif Regular" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="selectReleasetxt" layoutX="213.0" layoutY="172.0" prefHeight="26.0" prefWidth="433.0" />
+            <Button fx:id="browseReleasebtn" layoutX="649.0" layoutY="171.0" mnemonicParsing="false" onAction="#chooseRelease" prefHeight="26.0" prefWidth="76.0" stylesheets="@Login.css" text="Browse" textFill="WHITE" />
+            <Button fx:id="measureEnergybtn" layoutX="437.0" layoutY="214.0" mnemonicParsing="false" onAction="#computeEnergy" prefHeight="26.0" prefWidth="141.0" stylesheets="@Login.css" text="Compute Energy" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="showStatsbtn" disable="true" layoutX="585.0" layoutY="213.0" mnemonicParsing="false" onAction="#showStatsAction" prefHeight="26.0" prefWidth="141.0" stylesheets="@Login.css" text="Show Statistics" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <TextArea fx:id="outputConsole" layoutX="213.0" layoutY="250.0" prefHeight="190.0" prefWidth="516.0" />
+            <Label layoutX="2.0" layoutY="247.0" prefHeight="20.0" prefWidth="207.0" text="Live Working" textFill="#ddf5f5" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Serif Regular" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="2.0" layoutY="25.0" prefHeight="19.0" prefWidth="207.0" text="[For Monkey tool]" textFill="#141313" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Serif Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="4.0" layoutY="129.0" prefHeight="19.0" prefWidth="207.0" text="[For Monkey tool]" textFill="#141313" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Serif Regular" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Text layoutX="308.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E">
+         <font>
+            <Font name="DejaVu Sans Bold" size="44.0" />
+         </font>
+         <fill>
+            <RadialGradient centerX="1.0" centerY="1.0" radius="0.5">
+               <stops>
+                  <Stop color="#514f4fba" />
+                  <Stop color="#ccf9ffe3" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Text>
+      <Text layoutX="337.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profiler">
+         <font>
+            <Font name="DejaVu Sans Bold" size="30.0" />
+         </font>
+         <fill>
+            <RadialGradient centerX="0.5561797752808989" centerY="1.0" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#51371b" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Text>
+   </children>
+</AnchorPane>

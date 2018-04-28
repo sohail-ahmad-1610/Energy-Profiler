@@ -52,6 +52,7 @@ public class Downloads{
 	@FXML
 	ProgressBar bar;
 	
+	
 	@FXML
 	Label done ;
 	
@@ -74,6 +75,13 @@ public class Downloads{
 	public void Download() {
 		
 		System.out.println("In start Download");
+		//System.out.println("Username:"+userName+"->app:"+appName);
+		if (userName.equals("") | 
+				appName.equals("")
+				) {
+				EPExperiment.printAlert("ERROR: All inout fields are required...");
+				return;
+			}
 		
 		Task<Void> task = new Task<Void>() {
 
@@ -88,6 +96,9 @@ public class Downloads{
 					RepositoryService repoService = new RepositoryService();
 					//System.out.println(userName + " , " + appName);
 					Repository repository = repoService.getRepository(userName,appName);
+					
+	                
+
 		            //System.out.println(userName + " , " + appName);
 		            List<RepositoryTag> list = repoService.getTags(repository);
 		            //System.out.println("Start " + list.size());
@@ -105,6 +116,10 @@ public class Downloads{
 		                versions[i] = version;
 		                URL url = new URL(actualURL);
 		                URLConnection conexion = url.openConnection();
+		                if (conexion.getURL().getHost() == null) {
+		                System.out.println("INVALID URL");	
+		                /*Code*/}
+		                //System.out.println("INVALID URL: "+conexion.getURL().getHost());
 		                conexion.connect();
 
 		                InputStream input = new BufferedInputStream(url.openStream());
@@ -126,7 +141,7 @@ public class Downloads{
 		                
 		            }
 		            
-		            done.setVisible(true);
+		            //done.setVisible(true);
 		            System.out.println("Downloading Completed");
 		            Thread.sleep(3000L);  // Sleep for 3 sec.....
 		         
@@ -139,7 +154,7 @@ public class Downloads{
 				            FXMLLoader loader = new FXMLLoader();
 				           // System.out.println(DownloadManager.class.getResource("../ui/startDownload.fxml"));
 				            EPExperiment.isConfigScene = true ;
-				            loader.setLocation(EPDriver.class.getResource("../ui/MainConfigurationScene.fxml"));
+				            loader.setLocation(EPDriver.class.getResource("../ui/mainConfigScene.fxml"));
 				            AnchorPane rootLayout;
 							try {
 								rootLayout = (AnchorPane) loader.load();
@@ -155,7 +170,13 @@ public class Downloads{
 					});
 		            
 					}catch (Exception e) {
+//						System.out.println("Getting Repo");
 						System.out.println(e.getMessage());
+						EPExperiment.printAlert("ERROR: Invalid Owner name or app-name!");
+						
+						return null;
+						
+						
 					}
 	//			done.setVisible(true);
 				return null;
